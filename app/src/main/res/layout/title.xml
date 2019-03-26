@@ -11,6 +11,6 @@
         android:textColor="@color/white"
         android:layout_centerInParent="true"
         android:textSize="15dp"
-        android:text="广播接收数据"
+        android:text="接收数据"
         tools:ignore="HardcodedText,SpUsage" />
 </RelativeLayout>

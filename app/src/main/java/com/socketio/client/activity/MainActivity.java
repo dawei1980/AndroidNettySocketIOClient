@@ -51,49 +51,40 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        initView();
         socketConn();
-
         mSocket.on("borcast", onLogin);
     }
 
-    private void initView(){
-//        mAdapter = new MainAdapter(MainActivity.this,mList);
-//        main_listview.setAdapter(mAdapter);
-//        mAdapter.notifyDataSetChanged();
-    }
-
-    @SuppressLint("HandlerLeak")
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case 0:
-                    Toast.makeText(MainActivity.this, "接收到了服务端的消息", Toast.LENGTH_SHORT).show();
-                    Bundle bundle = msg.getData();
-                    String data = bundle.getString("socket_data");
-                    try {
-                        JSONObject jsonObject = new JSONObject(data);
-                        Recommendation recommendation = new Recommendation();
-
-                        recommendation.setGetrecommendationinterval(jsonObject.getString("getrecommendationinterval"));
-                        recommendation.setGetrecommendationtime(jsonObject.getString("getrecommendationtime"));
-                        recommendation.setStarttime(jsonObject.getString("starttime"));
-                        recommendation.setTimeouttime(jsonObject.getString("timeouttime"));
-                        recommendation.setUpdatetime(jsonObject.getString("updatetime"));
-                        recommendation.setCameragroup(jsonObject.getString("cameragroup"));
-                        mList.add(recommendation);
-
-                        mAdapter = new MainAdapter(MainActivity.this,mList);
-                        main_listview.setAdapter(mAdapter);
-                        mAdapter.notifyDataSetChanged();
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-            }
-        }
-    };
+//    @SuppressLint("HandlerLeak")
+//    private Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            switch (msg.what) {
+//                case 0:
+//                    Toast.makeText(MainActivity.this, "接收到了服务端的消息", Toast.LENGTH_SHORT).show();
+//                    Bundle bundle = msg.getData();
+//                    String data = bundle.getString("socket_data");
+//                    try {
+//                        JSONObject jsonObject = new JSONObject(data);
+//                        Recommendation recommendation = new Recommendation();
+//
+//                        recommendation.setGetrecommendationinterval(jsonObject.getString("getrecommendationinterval"));
+//                        recommendation.setGetrecommendationtime(jsonObject.getString("getrecommendationtime"));
+//                        recommendation.setStarttime(jsonObject.getString("starttime"));
+//                        recommendation.setTimeouttime(jsonObject.getString("timeouttime"));
+//                        recommendation.setUpdatetime(jsonObject.getString("updatetime"));
+//                        recommendation.setCameragroup(jsonObject.getString("cameragroup"));
+//                        mList.add(recommendation);
+//
+//                        mAdapter = new MainAdapter(MainActivity.this,mList);
+//                        main_listview.setAdapter(mAdapter);
+//                        mAdapter.notifyDataSetChanged();
+//                    } catch (JSONException e) {
+//                        e.printStackTrace();
+//                    }
+//            }
+//        }
+//    };
 
     @Override
     protected void onDestroy() {
@@ -116,15 +107,41 @@ public class MainActivity extends AppCompatActivity {
     private Emitter.Listener onLogin = new Emitter.Listener() {
         @Override
         public void call(Object... objects) {
-            String s = (String) objects[0];
-            Bundle bundle=new Bundle();
-            Log.e("server data : ", s);
-            Message msg = new Message();
-            bundle.putString("socket_data",s);
-            msg = handler.obtainMessage();//每发送一次都要重新获取
-            msg.setData(bundle);
-            msg.what = 0;
-            handler.sendMessage(msg);
+            final String data = (String) objects[0];
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        JSONObject jsonObject = new JSONObject(data);
+                        Recommendation recommendation = new Recommendation();
+
+                        recommendation.setGetrecommendationinterval(jsonObject.getString("getrecommendationinterval"));
+                        recommendation.setGetrecommendationtime(jsonObject.getString("getrecommendationtime"));
+                        recommendation.setStarttime(jsonObject.getString("starttime"));
+                        recommendation.setTimeouttime(jsonObject.getString("timeouttime"));
+                        recommendation.setUpdatetime(jsonObject.getString("updatetime"));
+                        recommendation.setCameragroup(jsonObject.getString("cameragroup"));
+                        mList.add(recommendation);
+
+                        mAdapter = new MainAdapter(MainActivity.this,mList);
+                        main_listview.setAdapter(mAdapter);
+                        mAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
+
+//            Bundle bundle=new Bundle();
+//            Log.e("server data : ", s);
+//            Message msg = new Message();
+//            bundle.putString("socket_data",s);
+//            msg = handler.obtainMessage();//每发送一次都要重新获取
+//            msg.setData(bundle);
+//            msg.what = 0;
+//            handler.sendMessage(msg);
+
         }
     };
 
