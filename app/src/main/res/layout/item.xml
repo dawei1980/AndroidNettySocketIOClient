@@ -20,7 +20,7 @@
             android:textSize="15dp"
             android:text="timeouttime"
             android:layout_weight="1"
-            android:gravity="center" />
+            android:gravity="left" />
         <TextView
             android:id="@+id/getrecommendationtime"
             android:layout_width="wrap_content"
@@ -29,7 +29,7 @@
             android:textSize="15dp"
             android:text="getrecommendationtime"
             android:layout_weight="1"
-            android:gravity="center"/>
+            android:gravity="left"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:textSize="15dp"
             android:text="timeouttime"
             android:layout_weight="1"
-            android:gravity="center"/>
+            android:gravity="left"/>
         <TextView
             android:id="@+id/updatetime"
             android:layout_width="wrap_content"
@@ -54,7 +54,7 @@
             android:textSize="15dp"
             android:text="getrecommendationtime"
             android:layout_weight="1"
-            android:gravity="center"/>
+            android:gravity="left"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
             android:textSize="15dp"
             android:text="timeouttime"
             android:layout_weight="1"
-            android:gravity="center"/>
+            android:gravity="left"/>
         <TextView
             android:id="@+id/cameragroup"
             android:layout_width="wrap_content"
@@ -79,6 +79,6 @@
             android:textSize="15dp"
             android:text="getrecommendationtime"
             android:layout_weight="1"
-            android:gravity="center"/>
+            android:gravity="left"/>
     </LinearLayout>
 </LinearLayout>
