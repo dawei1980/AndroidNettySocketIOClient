@@ -57,7 +57,7 @@ public class MainAdapter extends BaseAdapter {
         holder.getrecommendationinterval.setText(list.get(position).getGetrecommendationinterval());
         holder.getrecommendationtime.setText(list.get(position).getGetrecommendationtime());
         holder.starttime.setText(list.get(position).getStarttime());
-        holder.timeouttime.setText(list.get(position).getStarttime());
+        holder.timeouttime.setText(list.get(position).getTimeouttime());
         holder.updatetime.setText(list.get(position).getUpdatetime());
         holder.cameragroup.setText(list.get(position).getCameragroup());
 

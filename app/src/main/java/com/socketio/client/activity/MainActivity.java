@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
                         recommendation.setTimeouttime(jsonObject.getString("timeouttime"));
                         recommendation.setUpdatetime(jsonObject.getString("updatetime"));
                         recommendation.setCameragroup(jsonObject.getString("cameragroup"));
-                        mList.add(recommendation);
 
+                        mList.add(recommendation);
                         mAdapter = new MainAdapter(MainActivity.this,mList);
                         main_listview.setAdapter(mAdapter);
                         mAdapter.notifyDataSetChanged();
