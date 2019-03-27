@@ -1,6 +1,7 @@
 package com.socketio.client.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
@@ -99,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                         mAdapter = new MainAdapter(MainActivity.this,mList);
                         main_listview.setAdapter(mAdapter);
                         mAdapter.notifyDataSetChanged();
-
                         if(mList.size() == 10){
                             mList.clear();
                             main_listview.setAdapter(mAdapter);
@@ -130,9 +130,8 @@ public class MainActivity extends AppCompatActivity {
     public void onClick(View v){
         switch (v.getId()){
             case R.id.main_clear_btn:
-                mList.clear();
-                main_listview.setAdapter(mAdapter);
-                mAdapter.notifyDataSetChanged();
+                Intent intent = new Intent(MainActivity.this,VideoActivity.class);
+                startActivity(intent);
                 break;
         }
     }

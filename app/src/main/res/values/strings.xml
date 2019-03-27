@@ -1,3 +1,9 @@
-<resources>
-    <string name="app_name">SokectIOClient</string>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name" tools:ignore="ExtraTranslation">SokectIOClient</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="startCard">PlayCard</string>
+    <string name="pauseCard">StopCard</string>
+    <string name="startUri">PlayUri</string>
+    <string name="pauseUri">StopUri</string>
 </resources>
