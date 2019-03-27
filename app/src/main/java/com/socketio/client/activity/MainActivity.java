@@ -6,6 +6,8 @@ import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,6 +24,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
@@ -156,4 +159,13 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     };
+
+    @OnClick({R.id.main_clear_btn})
+    public void onClick(View v){
+        switch (v.getId()){
+            case R.id.main_clear_btn:
+                mList.clear();
+                break;
+        }
+    }
 }

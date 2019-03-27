@@ -16,5 +16,15 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:dividerHeight="1dp"
-        android:divider="@color/colorPrimary"/>
+        android:divider="@color/colorPrimary"
+        android:layout_weight="1"/>
+
+    <Button
+        android:id="@+id/main_clear_btn"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorPrimary"
+        android:textSize="15dp"
+        android:textColor="@color/white"
+        android:text="清除数据"/>
 </LinearLayout>
