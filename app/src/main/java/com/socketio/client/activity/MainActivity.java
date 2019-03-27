@@ -130,6 +130,13 @@ public class MainActivity extends AppCompatActivity {
                         mAdapter = new MainAdapter(MainActivity.this,mList);
                         main_listview.setAdapter(mAdapter);
                         mAdapter.notifyDataSetChanged();
+
+                        if(mList.size() == 10){
+                            mList.clear();
+                            main_listview.setAdapter(mAdapter);
+                            mAdapter.notifyDataSetChanged();
+                        }
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -165,6 +172,8 @@ public class MainActivity extends AppCompatActivity {
         switch (v.getId()){
             case R.id.main_clear_btn:
                 mList.clear();
+                main_listview.setAdapter(mAdapter);
+                mAdapter.notifyDataSetChanged();
                 break;
         }
     }
