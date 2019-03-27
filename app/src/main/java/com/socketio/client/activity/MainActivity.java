@@ -58,37 +58,6 @@ public class MainActivity extends AppCompatActivity {
         mSocket.on("borcast", onLogin);
     }
 
-//    @SuppressLint("HandlerLeak")
-//    private Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            switch (msg.what) {
-//                case 0:
-//                    Toast.makeText(MainActivity.this, "接收到了服务端的消息", Toast.LENGTH_SHORT).show();
-//                    Bundle bundle = msg.getData();
-//                    String data = bundle.getString("socket_data");
-//                    try {
-//                        JSONObject jsonObject = new JSONObject(data);
-//                        Recommendation recommendation = new Recommendation();
-//
-//                        recommendation.setGetrecommendationinterval(jsonObject.getString("getrecommendationinterval"));
-//                        recommendation.setGetrecommendationtime(jsonObject.getString("getrecommendationtime"));
-//                        recommendation.setStarttime(jsonObject.getString("starttime"));
-//                        recommendation.setTimeouttime(jsonObject.getString("timeouttime"));
-//                        recommendation.setUpdatetime(jsonObject.getString("updatetime"));
-//                        recommendation.setCameragroup(jsonObject.getString("cameragroup"));
-//                        mList.add(recommendation);
-//
-//                        mAdapter = new MainAdapter(MainActivity.this,mList);
-//                        main_listview.setAdapter(mAdapter);
-//                        mAdapter.notifyDataSetChanged();
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//            }
-//        }
-//    };
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -142,16 +111,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-
-//            Bundle bundle=new Bundle();
-//            Log.e("server data : ", s);
-//            Message msg = new Message();
-//            bundle.putString("socket_data",s);
-//            msg = handler.obtainMessage();//每发送一次都要重新获取
-//            msg.setData(bundle);
-//            msg.what = 0;
-//            handler.sendMessage(msg);
-
         }
     };
 
