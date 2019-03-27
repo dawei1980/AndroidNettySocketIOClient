@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
-    <include layout="@layout/title"/>
+    <include
+        android:id="@+id/main_title"
+        layout="@layout/title"/>
 
     <ListView
         android:id="@+id/main_listview"
@@ -17,14 +19,18 @@
         android:layout_marginRight="10dp"
         android:dividerHeight="1dp"
         android:divider="@color/colorPrimary"
-        android:layout_weight="1"/>
-
-    <Button
-        android:id="@+id/main_clear_btn"
+        android:layout_below="@id/main_title"
+        android:visibility="visible"/>
+    <VideoView
+        android:id="@+id/videoView"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/colorPrimary"
-        android:textSize="15dp"
-        android:textColor="@color/white"
-        android:text="清除数据"/>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:layout_above="@+id/startUri"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        tools:ignore="ObsoleteLayoutParam,RtlCompat"
+        android:layout_below="@id/main_title"
+        android:visibility="gone"/>
+
+</RelativeLayout>
