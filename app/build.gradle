@@ -29,5 +29,4 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 
     implementation group: 'io.socket', name: 'socket.io-client', version: '1.0.0'
-    implementation 'com.github.Andy-13:ZbPermission:1.0.0'
 }
