@@ -3,6 +3,7 @@ package com.socketio.client.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.MediaController;
 import android.widget.VideoView;
 
@@ -10,7 +11,7 @@ import com.socketio.client.R;
 
 import java.io.File;
 
-public class VideoActivity extends Activity {
+public class VideoActivity extends AppCompatActivity {
     private String filename = null;
 //    private Button startCard = null;
 //    private Button startUri = null;
