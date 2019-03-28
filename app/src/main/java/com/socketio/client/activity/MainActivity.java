@@ -1,10 +1,13 @@
 package com.socketio.client.activity;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
     private MediaController media = null;
     private String filename = null;
 
+    private static final int REQUEST_EXTERNAL_STORAGE = 1;
+    private static String[] PERMISSIONS_STORAGE = {
+            "android.permission.READ_EXTERNAL_STORAGE",
+            "android.permission.WRITE_EXTERNAL_STORAGE" };
+
     private List<Recommendation> mList = new ArrayList<>();
 
     //创建socket连接
@@ -67,6 +75,13 @@ public class MainActivity extends AppCompatActivity {
 
         socketConn();
         mSocket.on("borcast", onLogin);
+
+        media = new MediaController(MainActivity.this);
+        filename = Environment.getExternalStorageDirectory() + "/videos/video1.mp4";
+
+        verifyStoragePermissions(MainActivity.this);
+
+//        playVideoFromFile();
     }
 
     @Override
@@ -97,8 +112,12 @@ public class MainActivity extends AppCompatActivity {
                     Bundle bundle = msg.getData();
                     String data = bundle.getString("socket_data");
                     if(!"".equals(data)){
-                        Intent intent = new Intent(MainActivity.this, VideoActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(MainActivity.this, VideoActivity.class);
+//                        startActivity(intent);
+
+                        video.setVisibility(View.VISIBLE);
+                        main_listview.setVisibility(View.GONE);
+                        playVideoFromFile();
                     }
             }
         }
@@ -160,55 +179,6 @@ public class MainActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    try {
-//                        JSONObject jsonObject = new JSONObject(data);
-//                        Recommendation recommendation = new Recommendation();
-//
-//                        recommendation.setGetrecommendationinterval(jsonObject.getString("getrecommendationinterval"));
-//                        recommendation.setGetrecommendationtime(jsonObject.getString("getrecommendationtime"));
-//                        recommendation.setStarttime(jsonObject.getString("starttime"));
-//                        recommendation.setTimeouttime(jsonObject.getString("timeouttime"));
-//                        recommendation.setUpdatetime(jsonObject.getString("updatetime"));
-//                        recommendation.setCameragroup(jsonObject.getString("cameragroup"));
-//
-//                        String settingTimeStr = recommendation.getStarttime();
-//
-//                        int hour = Integer.parseInt(settingTimeStr.split(":")[0]);
-//                        int minute = Integer.parseInt(settingTimeStr.split(":")[1]);
-//                        int second = Integer.parseInt(settingTimeStr.split(":")[2]);
-//                        Calendar calendar = Calendar.getInstance();
-//                        calendar.setTime(new Date());
-//                        calendar.set(Calendar.HOUR_OF_DAY,hour);
-//                        calendar.set(Calendar.MINUTE,minute);
-//                        calendar.set(Calendar.SECOND,second);
-//
-//                        long settingTime = calendar.getTimeInMillis();
-//
-//                        if(settingTime > System.currentTimeMillis()){
-//                            Intent intent = new Intent(MainActivity.this, VideoActivity.class);
-//                            startActivity(intent);
-//                        }else {
-//                            mList.add(recommendation);
-//                            mAdapter = new MainAdapter(MainActivity.this,mList);
-//                            main_listview.setAdapter(mAdapter);
-//                            mAdapter.notifyDataSetChanged();
-//                            if(mList.size() == 10){
-//                                mList.clear();
-//                                main_listview.setAdapter(mAdapter);
-//                                mAdapter.notifyDataSetChanged();
-//                            }
-//                        }
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-//                }
-//            });
-
-
         }
     };
 
@@ -223,4 +193,34 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     };
+
+    public static void verifyStoragePermissions(Activity activity) {
+
+        try {
+            //检测是否有写的权限
+            int permission = ActivityCompat.checkSelfPermission(activity,
+                    "android.permission.WRITE_EXTERNAL_STORAGE");
+            if (permission != PackageManager.PERMISSION_GRANTED) {
+                // 没有写的权限，去申请写的权限，会弹出对话框
+                ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE,REQUEST_EXTERNAL_STORAGE);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void playVideoFromFile() {
+        File file = new File(filename);
+        if (file.exists()) {
+            //将VideoView与MediaController进行关联
+            video.setVideoPath(file.getAbsolutePath());
+            video.setMediaController(media);
+            media.setMediaPlayer(video);
+            //让VideoView获取焦点
+            video.requestFocus();
+            video.start();
+        } else {
+            video.pause();
+        }
+    }
 }

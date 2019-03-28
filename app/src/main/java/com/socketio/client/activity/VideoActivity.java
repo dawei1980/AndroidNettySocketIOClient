@@ -17,11 +17,12 @@ import com.socketio.client.R;
 import java.io.File;
 
 public class VideoActivity extends AppCompatActivity {
-    private String filename = null;
+
 //    private Button startCard = null;
 //    private Button startUri = null;
 //    private TextView fileName = null;
     private VideoView video = null;
+    private String filename = null;
     private MediaController media = null;
 
     private static final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -34,13 +35,9 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        filename = Environment.getExternalStorageDirectory() + "/videos/video1.mp4";
-
 //        startCard = (Button) findViewById(R.id.startCard);
 //        startUri = (Button) findViewById(R.id.startUri);
 //        fileName = (TextView) findViewById(R.id.fileName);
-        video = findViewById(R.id.videoView);
-        media = new MediaController(VideoActivity.this);
 
 //        startCard.setOnClickListener(new View.OnClickListener() {
 //            @Override
@@ -55,6 +52,10 @@ public class VideoActivity extends AppCompatActivity {
 //                openVideoFromUri();
 //            }
 //        });
+
+        video = findViewById(R.id.videoView);
+        media = new MediaController(VideoActivity.this);
+        filename = Environment.getExternalStorageDirectory() + "/videos/video1.mp4";
 
         verifyStoragePermissions(VideoActivity.this);
 
