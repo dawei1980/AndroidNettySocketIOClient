@@ -13,7 +13,19 @@
         android:gravity="center_vertical"
         android:layout_marginTop="10dp">
         <TextView
-            android:id="@+id/timeouttime"
+            android:id="@+id/state_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:text="state"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:layout_marginLeft="5dp"/>
+
+        <TextView
+            android:id="@+id/is_loop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
@@ -23,8 +35,26 @@
             android:layout_gravity="left"
             android:gravity="left"
             android:layout_marginLeft="5dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:layout_marginTop="5dp">
         <TextView
-            android:id="@+id/getrecommendationtime"
+            android:id="@+id/play_duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textSize="15dp"
+            android:text="play_duration"
+            android:layout_weight="1"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:layout_marginLeft="5dp"/>
+        <TextView
+            android:id="@+id/switch_effect"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
@@ -42,53 +72,12 @@
         android:gravity="center_vertical"
         android:layout_marginTop="5dp">
         <TextView
-            android:id="@+id/getrecommendationinterval"
+            android:id="@+id/video_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/colorPrimary"
             android:textSize="15dp"
-            android:text="timeouttime"
-            android:layout_weight="1"
-            android:layout_gravity="left"
-            android:gravity="left"
-            android:layout_marginLeft="5dp"/>
-        <TextView
-            android:id="@+id/updatetime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:textSize="15dp"
-            android:text="getrecommendationtime"
-            android:layout_weight="1"
-            android:layout_gravity="left"
-            android:gravity="left"
-            android:layout_marginLeft="5dp"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="10dp">
-        <TextView
-            android:id="@+id/starttime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:textSize="15dp"
-            android:text="timeouttime"
-            android:layout_weight="1"
-            android:layout_gravity="left"
-            android:gravity="left"
-            android:layout_marginLeft="5dp"/>
-        <TextView
-            android:id="@+id/cameragroup"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/colorPrimary"
-            android:textSize="15dp"
-            android:text="getrecommendationtime"
+            android:text="video_url"
             android:layout_weight="1"
             android:layout_gravity="left"
             android:gravity="left"
